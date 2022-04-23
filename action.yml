@@ -21,7 +21,9 @@ runs:
   using: 'node16'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: 'always()'
+  # Customization: cache files even on failing pipeline
+  # There is a small race case in cancelled(): if the pipeline is interrupted during the cache download, the cache is wiped
+  post-if: 'always() || failure()'
 branding:
   icon: 'archive'
   color: 'gray-dark'
