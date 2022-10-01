@@ -23,7 +23,7 @@ runs:
   post: 'dist/save/index.js'
   # Customization: cache files even on failing pipeline
   # There is a small race case in cancelled(): if the pipeline is interrupted during the cache download, the cache is wiped
-  post-if: 'always() || failure()'
+  post-if: 'success() || failure()'
 branding:
   icon: 'archive'
   color: 'gray-dark'
